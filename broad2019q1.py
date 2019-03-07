@@ -29,12 +29,16 @@ with open('/Users/timrpeterson/OneDrive - Washington University in St. Louis/Dat
 		#for k, v in genes.iteritems():
 			#print k, v
 			#quit()
-
+		output = []
 		for key, value in genes.iteritems(): 
 
 			result = pearsonr(np.array(value).astype(np.float), np.array(genes[input[0]]).astype(np.float))
 
-			b = (key,) + result
-			spamwriter.writerow(b)
+			output.append(list((key,) + result)) 
+
+		sorted(output, key=lambda x: x[1], reverse=True)
+
+		for row in output:		
+			spamwriter.writerow(row)
 
 
