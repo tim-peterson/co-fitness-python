@@ -15,8 +15,8 @@ with open('/Users/timrpeterson/OneDrive - Washington University in St. Louis/Dat
 	csv_reader = csv.reader(csv_file, delimiter='\t')
 	next(csv_reader)
 
-	with open('/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/Third Party/MORPHEOME/' + input[0] + 'pearsons-python.csv', 'wb') as csvfile:
-		spamwriter = csv.writer(csvfile, delimiter=' ', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+	with open('/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/Third Party/MORPHEOME/' + input[0] + '-pearsons-python.csv', 'wb') as csvfile:
+		spamwriter = csv.writer(csvfile, delimiter=',')
 	
 		genes = {}
 		for row in csv_reader:
@@ -36,9 +36,11 @@ with open('/Users/timrpeterson/OneDrive - Washington University in St. Louis/Dat
 
 			output.append(list((key,) + result)) 
 
-		sorted(output, key=lambda x: x[1], reverse=True)
+		output2 = sorted(output, key=lambda x: x[1], reverse=True)
 
-		for row in output:		
+		for row in output2:		
+			#if any(field.strip() for field in row):
 			spamwriter.writerow(row)
 
+		csvfile.close()
 
