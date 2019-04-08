@@ -30,7 +30,11 @@ path = "/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/M
 
 input_genes = ["TGFBR2", "TGFBR1", "SMAD3", "FBN1"]
 input_genes = ["CHUK","MAP3K14","NFKB1","NFKB2","NFKBIA","REL","RELA","RELB","RPS3"]
-output_file_name = "NFKB_genes"
+input_genes = ["BMP4","BMP8A","BMP8B","CLEC11A","FGF13","FGF14","GDF7","IGF2","MDK","OGN","PDGFD","TGFB2","TGFB3","THBS4"]
+input_genes = ["ADAMTS15","AGER","APLP1","BMP2","BMP4","BMP8A","BMP8B","CCDC80","CCL12","CCL17","CCL2","CCL22","CCL5","CCL7","CCL8","CCL9","CHRD","CLEC11A","COL13A1","COL5A1","COL5A3","CX3CL1","CXCL10","CXCL13","CXCL14","CXCL16","CXCL9","FBN1","FGF13","FGF14","FGF23","FN1","FSTL1","GAL","GDF7","IGF2","INHBA","INSL3","LAMC2","LIF","LIPC","LTB","LTBP2","MDK","NDNF","NELL1","NGF","NOV","NPY","OGN","PCOLCE","PCOLCE2","PDGFB","PDGFD","PLA2G2D","POSTN","PTN","PTPRS","RSPO3","RTN4R","SAA3","SMOC2","SPP1","TGFB2","TGFB3","THBS2","THBS3","THBS4","TIMP1","TNFSF11","TNFSF8","WNT1","WNT10A","WNT7B"]
+input_genes = ['CHUK','MAP3K14','NFKB1','NFKB2','NFKBIA','REL','RELA','RELB','RPS3','BMP4','BMP8A','BMP8B','CLEC11A','FGF13','FGF14','GDF7','IGF2','MDK','OGN','PDGFD','TGFB2','TGFB3','THBS4']
+
+output_file_name = "NFKB_growth_factor_GO_0008083_genes"
 
 datasets = [path + 'gene_effect_corrected_output.csv', '/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/MORPHEOME/Hart-Moffat/qbf_Avanadata_2018.txt']
 
