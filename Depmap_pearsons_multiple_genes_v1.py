@@ -10,10 +10,13 @@ from rpy2.robjects.vectors import FloatVector
 
 stats = importr('stats')
 
-path = "/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/MORPHEOME/"
+#path = "/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/MORPHEOME/"
 
-input_genes = ["TGFBR2", "TGFBR1", "SMAD3", "FBN1"]
-input_genes = ["MTOR", "RPTOR"]
+path = "/Users/timrpeterson/OneDrive-v2/Data/MORPHEOME/DepMap/"
+
+
+#input_genes = ["TGFBR2", "TGFBR1", "SMAD3", "FBN1"]
+#input_genes = ["MTOR", "RPTOR"]
 
 dataset_type = sys.argv[1]
 input_genes = sys.argv[2:]
@@ -25,7 +28,8 @@ if "depmap_broad_sanger" in dataset_type:
 	datasets = [path + 'DepMap/gene_effect_corrected_output.csv', path + 'Hart-Moffat/qbf_Avanadata_2018.csv', path + 'DepMap/02a_BayesianFactors.csv']
 
 else:
-	datasets = [path + 'DepMap/gene_effect_corrected_output.csv', path + 'Hart-Moffat/qbf_Avanadata_2018.csv']
+	#datasets = [path + 'DepMap/gene_effect_corrected_output.csv', path + 'Hart-Moffat/qbf_Avanadata_2018.csv']
+	datasets = [path + 'gene_effect_corrected_t_clean_gene_name.csv', path + 'qbf_Avanadata_2018.csv', path + '02a_BayesianFactors.csv']
 
 output = {}
 for x in input_genes:
@@ -92,6 +96,7 @@ for x in input_genes:
 
 output2 = []
 for key, value in output.items():
+	print(value["pval"])
 	p_adjust = stats.p_adjust(FloatVector(value["pval"]), method = 'BH')
 	pval = scipy.stats.stats.combine_pvalues(p_adjust)
 	#pval = np.prod(value["pval"])/len(value["pval"])

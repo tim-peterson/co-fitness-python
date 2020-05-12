@@ -54,17 +54,33 @@ input = ["MTOR..2475."]
 input = ["MTOR..2475."]
 input = ["ATRAID..51374."]
 input = ["ATRAID..51374."]
+
+input = ["FDPS..2224."]
+input = ["HMGCR..3156."]
+input = ["SIGMAR1..10280."]
+input = ["TMEM97..27346."]
+
+input = ["FDPS"]
+input = ["HMGCR"]
+input = ["SPTLC2"]
+input = ["SPTLC2..9517."]
+input = ["COL4A3BP..10087."]
+input = ["IFT81..28981."]
+input = ["ZZZ3..26009."]
+
 '''with open('/Users/timrpeterson/Downloads/gene_effect_corrected_output.csv') as csv_file:
 	csv_reader = csv.reader(csv_file, delimiter=',')
 	next(csv_reader)
 
 quit()	'''
+base_path = '/Users/timrpeterson/OneDrive-v2/Data/MORPHEOME/DepMap/'
 
-dataset = '/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/MORPHEOME/DepMap/gene_effect_corrected_output.csv'
-dataset = '/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/MORPHEOME/Hart-Moffat/qbf_Avanadata_2018.txt'
-dataset = '/Users/timrpeterson/OneDrive-v2/Data/MORPHEOME/DepMap/Achilles_gene_effect-2019q4-Broad_t.csv'
-dataset = '/Users/timrpeterson/OneDrive-v2/Data/MORPHEOME/DepMap/Achilles_gene_effect-2019q4-Broad_t_noNAs.csv'
-
+#dataset = '/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/MORPHEOME/DepMap/gene_effect_corrected_output.csv'
+#dataset = '/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/MORPHEOME/Hart-Moffat/qbf_Avanadata_2018.txt'
+dataset = base_path + 'Achilles_gene_effect-2019q4-Broad_t.csv'
+dataset = base_path + 'Achilles_gene_effect-2019q4-Broad_t_noNAs.csv'
+#dataset = base_path + 'gene_effect_corrected_t_clean_gene_name.csv'
+#dataset = base_path + 'qbf_Avanadata_2018.txt'
 
 if "gene_effect" not in dataset:
 	age = '2018q4'
@@ -73,6 +89,8 @@ if "gene_effect" not in dataset:
 else:
 	if "2019q4" in dataset:
 		age = '2019q4'
+	elif "2018" in dataset:
+		age = '2018'		
 	else: 	
 		age = '2019q1'
 	delimiter = ','
@@ -82,7 +100,7 @@ with open(dataset) as csv_file:
 	csv_reader = csv.reader(csv_file, delimiter=delimiter)
 	next(csv_reader)
 
-	with open('/Users/timrpeterson/OneDrive-v2/Data/MORPHEOME/DepMap/interaction_correlations_basal/' + input[0] + '-pearsons-python-' + age + '.csv', 'w') as csvfile:
+	with open(base_path + 'interaction_correlations_basal/' + input[0] + '-pearsons-python-' + age + '.csv', 'w') as csvfile:
 
 	#with open('/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/MORPHEOME/DepMap/cherry-picked/' + input[0] + '-pearsons-python-' + age + '.csv', 'wb') as csvfile:
 		spamwriter = csv.writer(csvfile, delimiter=',')

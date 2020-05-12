@@ -27,8 +27,12 @@ input = ["TGFBR1 (7046)"]
 input = ["FBN1"]
 input = ["SMAD3"]
 input = ["TGFBR2"]
+input = ["FDPS (2224)"]
 
-path = "/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/MORPHEOME/"
+#path = "/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/MORPHEOME/"
+
+path = "/Users/timrpeterson/OneDrive-v2/Data/MORPHEOME/DepMap/"
+
 
 input_genes = ["TGFBR2", "TGFBR1", "SMAD3", "FBN1"]
 input_genes = ["CHUK","MAP3K14","NFKB1","NFKB2","NFKBIA","REL","RELA","RELB","RPS3"]
@@ -43,11 +47,18 @@ output_file_name = "MTOR_RPTOR_genes_v6"
 
 input_genes = ['IRF8','IRF4','IRF9']
 
-output_file_name = "IRF8_IRF4_IRF9_genes"
+input_genes = ["ATRAID..51374.", "SLC37A3..84255."]
 
-datasets = [path + 'DepMap/gene_effect_corrected_output.csv', path + 'Hart-Moffat/qbf_Avanadata_2018.csv', path + 'DepMap/02a_BayesianFactors.csv']
+output_file_name = "ATRAID_SLC37A3_genes"
+
+#datasets = [path + 'DepMap/gene_effect_corrected_output.csv', path + 'Hart-Moffat/qbf_Avanadata_2018.csv', path + 'DepMap/02a_BayesianFactors.csv']
+
+datasets = [path + 'gene_effect_corrected_t_clean_gene_name.csv', path + 'qbf_Avanadata_2018.csv', path + '02a_BayesianFactors.csv']
 
 
+datasets = [path + 'gene_effect_corrected_t_clean_gene_name.csv']
+
+datasets = [path + 'Achilles_gene_effect-2019q4-Broad_t_noNAs.csv']
 #datasets = [path + 'Hart-Moffat/134346-1-shRNA-bayesian-factors.txt']
 
 '''if "depmap_broad_sanger" in sys.argv[1]:
@@ -67,7 +78,7 @@ for x in input_genes:
 		if "gene_effect" not in y:
 			#age = '2018q4'
 			#delimiter = '\t'
-			remove_gene_id = False 
+			remove_gene_id = True #False
 		else:
 			#age = '2019q1'
 			#delimiter = ','
@@ -89,20 +100,45 @@ for x in input_genes:
 				else:
 					genes[gene] = row
 
+
+
+				'''			
+				for key, value in genes.items(): 
+
+					if x not in genes:
+
+						continue
+
+					#a, b = pd.isnull(np.array(value, dtype=float)), 
+					a, b = value, genes[x]
+					#nas = np.logical_or(a.isnan(), b.isnan())
+					nas = np.logical_or(pd.isnull(value), pd.isnull(genes[x]))
+
+					#result = pearsonr(a[~nas], b[~nas])
+					result = pearsonr(np.array(value).astype(np.float)[~nas], np.array(genes[x]).astype(np.float)[~nas])
+					#result = pearsonr(np.array(value).astype(np.float), np.array(genes[x]).astype(np.float))
+				'''
+					
+
+			# Build list of NA inside target gene
+			target_NAs = [i for i, a in enumerate(genes[x]) if a == "NA" or a == '']
+
 			for key, value in genes.items(): 
+				'''x, y = np.array(value), np.array(genes[input[0]])
+				nas = np.logical_or(pd.isnull(x), pd.isnull(y))
+				result = pearsonr(x[~nas], y[~nas])'''
+				dest_NAs = [i for i, a in enumerate(value) if a == "NA" or a == '']
 
-				if x not in genes:
+				indices_to_remove = list(set(target_NAs + dest_NAs))
 
-					continue
+				filtered_value = [i for j, i in enumerate(value) if j not in indices_to_remove] 
+				filtered_gene = [i for j, i in enumerate(genes[x]) if j not in indices_to_remove]
+				#all_targets = target_NAs + dest_NAs
 
-				#a, b = pd.isnull(np.array(value, dtype=float)), 
-				a, b = value, genes[x]
-				#nas = np.logical_or(a.isnan(), b.isnan())
-				nas = np.logical_or(pd.isnull(value), pd.isnull(genes[x]))
+				#print(filtered_gene)
+				#print(filtered_value)
+				result = pearsonr([float(elt) for elt in filtered_value], [float(elt) for elt in filtered_gene])
 
-				#result = pearsonr(a[~nas], b[~nas])
-				result = pearsonr(np.array(value).astype(np.float)[~nas], np.array(genes[x]).astype(np.float)[~nas])
-				#result = pearsonr(np.array(value).astype(np.float), np.array(genes[x]).astype(np.float))
 
 				if key in output:
 
