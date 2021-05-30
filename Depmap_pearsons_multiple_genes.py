@@ -31,7 +31,7 @@ input = ["FDPS (2224)"]
 
 #path = "/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/MORPHEOME/"
 
-path = "/Users/timrpeterson/OneDrive-v2/Data/MORPHEOME/DepMap/"
+path = "/Users/timpeterson/OneDrive-v3/Data/DepMap/"
 
 
 input_genes = ["TGFBR2", "TGFBR1", "SMAD3", "FBN1"]
@@ -49,7 +49,9 @@ input_genes = ['IRF8','IRF4','IRF9']
 
 input_genes = ["ATRAID..51374.", "SLC37A3..84255."]
 
-output_file_name = "ATRAID_SLC37A3_genes"
+input_genes = ["ATRAID", "SLC37A3", 'FDPS']
+
+output_file_name = "ATRAID_SLC37A3_FDPS_genes"
 
 #datasets = [path + 'DepMap/gene_effect_corrected_output.csv', path + 'Hart-Moffat/qbf_Avanadata_2018.csv', path + 'DepMap/02a_BayesianFactors.csv']
 
@@ -59,6 +61,8 @@ datasets = [path + 'gene_effect_corrected_t_clean_gene_name.csv', path + 'qbf_Av
 datasets = [path + 'gene_effect_corrected_t_clean_gene_name.csv']
 
 datasets = [path + 'Achilles_gene_effect-2019q4-Broad_t_noNAs.csv']
+
+datasets = [path + 'depmap_2020q2_t.csv']
 #datasets = [path + 'Hart-Moffat/134346-1-shRNA-bayesian-factors.txt']
 
 '''if "depmap_broad_sanger" in sys.argv[1]:
@@ -75,6 +79,10 @@ for x in input_genes:
 	for y in datasets:
 
 		delimiter = ','
+		if "depmap_2020q2" in y:
+			age = '2020q2'
+			delimiter = ','
+			remove_gene_id = True		
 		if "gene_effect" not in y:
 			#age = '2018q4'
 			#delimiter = '\t'
