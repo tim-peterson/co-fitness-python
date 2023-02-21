@@ -51,7 +51,11 @@ input_genes = ["ATRAID..51374.", "SLC37A3..84255."]
 
 input_genes = ["ATRAID", "SLC37A3", 'FDPS']
 
-output_file_name = "ATRAID_SLC37A3_FDPS_genes"
+input_genes = ["CASP1", "NLRP3", "GSDMD", "GSDME"] # "CASP11", 
+
+input_genes = ["PPARA"] # , "LPIN1", "SIRT3"
+
+output_file_name = "PPARA_genes"
 
 #datasets = [path + 'DepMap/gene_effect_corrected_output.csv', path + 'Hart-Moffat/qbf_Avanadata_2018.csv', path + 'DepMap/02a_BayesianFactors.csv']
 

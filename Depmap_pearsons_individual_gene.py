@@ -40,9 +40,7 @@ quit()'''
 a = izip(*csv.reader(open("/Users/timrpeterson/Downloads/gene_effect_corrected.csv", "rb")))
 csv.writer(open("/Users/timrpeterson/Downloads/gene_effect_corrected_output.csv", "wb")).writerows(a)
 quit()'''
-input = ["ATRAID (51374)"]
 
-input = ["SLC37A3 (84255)"]
 input = ["FDPS (2224)"]
 input = ["MTOR (2475)"]
 input = ["TGFBR2 (7048)"]
@@ -53,7 +51,7 @@ input = ["TGFBR2"]
 input = ["MTOR..2475."]
 input = ["MTOR..2475."]
 input = ["ATRAID..51374."]
-input = ["ATRAID..51374."]
+
 
 input = ["FDPS..2224."]
 input = ["HMGCR..3156."]
@@ -67,22 +65,38 @@ input = ["SPTLC2..9517."]
 input = ["COL4A3BP..10087."]
 input = ["IFT81..28981."]
 input = ["ZZZ3..26009."]
+input = ["ATRAID (51374)"]
+
+input = ["SLC37A3 (84255)"]
+input = ["SLC37A3"]
+input = ["ATRAID"]
+input = ['FDPS']
+input = ['UBALD1']
+input = ['LPIN2']
+input = ['VEGFA']
+input = ['PPARA']
+input = ['SPTLC2']
 
 '''with open('/Users/timrpeterson/Downloads/gene_effect_corrected_output.csv') as csv_file:
 	csv_reader = csv.reader(csv_file, delimiter=',')
 	next(csv_reader)
 
 quit()	'''
-base_path = '/Users/timrpeterson/OneDrive-v2/Data/MORPHEOME/DepMap/'
+base_path = '/Users/timpeterson/OneDrive-v3/Data/DepMap/'
 
 #dataset = '/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/MORPHEOME/DepMap/gene_effect_corrected_output.csv'
 #dataset = '/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/MORPHEOME/Hart-Moffat/qbf_Avanadata_2018.txt'
 dataset = base_path + 'Achilles_gene_effect-2019q4-Broad_t.csv'
 dataset = base_path + 'Achilles_gene_effect-2019q4-Broad_t_noNAs.csv'
+dataset = base_path + 'depmap_2020q2_t.csv'
 #dataset = base_path + 'gene_effect_corrected_t_clean_gene_name.csv'
 #dataset = base_path + 'qbf_Avanadata_2018.txt'
 
-if "gene_effect" not in dataset:
+if "depmap_2020q2" in dataset:
+	age = '2020q2'
+	delimiter = ','
+	remove_gene_id = True
+elif "gene_effect" not in dataset:
 	age = '2018q4'
 	delimiter = '\t'
 	remove_gene_id = False 
