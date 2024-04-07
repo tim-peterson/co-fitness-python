@@ -17,7 +17,11 @@ while($csv_line = fgetcsv($fp,1024, ',')) {
     }
    
 }
-//print_r($cells[0]);
+foreach($cells as $key => $val){
+    if((strpos($key, "kidney")!==false) || (strpos($key, "renal")!==false)) count($val);
+}
+exit();
+
 fclose($fp) or die("can't close file");
 
 

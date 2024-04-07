@@ -27,14 +27,17 @@ path = "/Users/timpeterson/OneDrive-v3/Data/DepMap/"
 input_drugs = ["palbociclib"] # "CASP11", 
 #input_drugs = ["oxaliplatin"]
 
-output_file_name = "palbociclib_vs_other_drugs"
+input_drugs = ["oxaliplatin"]
+input_drugs = ["pioglitazone"]
 
+output_file_name = "palbociclib_vs_other_drugs"
+output_file_name = "pioglitazone"
 
 BROAD_drugs = {}
 
 input_drugs_coded = []
 dataset = "primary-screen-replicate-collapsed-treatment-info.csv"
-dataset = "secondary-screen-replicate-collapsed-treatment-info.csv"
+#dataset = "secondary-screen-replicate-collapsed-treatment-info.csv"
 with open(path + dataset) as csv_file:
 	csv_reader = csv.DictReader(csv_file, delimiter=",")
 	for row in csv_reader:

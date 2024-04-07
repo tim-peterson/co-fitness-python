@@ -76,6 +76,9 @@ input = ['LPIN2']
 input = ['VEGFA']
 input = ['PPARA']
 input = ['SPTLC2']
+input = ["SPTLC2..9517."]
+input = ["GLP1R..2740."]
+input = ["GLP1R"]
 
 '''with open('/Users/timrpeterson/Downloads/gene_effect_corrected_output.csv') as csv_file:
 	csv_reader = csv.reader(csv_file, delimiter=',')
@@ -87,13 +90,19 @@ base_path = '/Users/timpeterson/OneDrive-v3/Data/DepMap/'
 #dataset = '/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/MORPHEOME/DepMap/gene_effect_corrected_output.csv'
 #dataset = '/Users/timrpeterson/OneDrive - Washington University in St. Louis/Data/MORPHEOME/Hart-Moffat/qbf_Avanadata_2018.txt'
 dataset = base_path + 'Achilles_gene_effect-2019q4-Broad_t.csv'
-dataset = base_path + 'Achilles_gene_effect-2019q4-Broad_t_noNAs.csv'
+#dataset = base_path + 'Achilles_gene_effect-2019q4-Broad_t_noNAs.csv'
 dataset = base_path + 'depmap_2020q2_t.csv'
 #dataset = base_path + 'gene_effect_corrected_t_clean_gene_name.csv'
 #dataset = base_path + 'qbf_Avanadata_2018.txt'
+#dataset = base_path + 'depmap_2020q4_t.csv'
+
 
 if "depmap_2020q2" in dataset:
 	age = '2020q2'
+	delimiter = ','
+	remove_gene_id = True
+elif "depmap_2020q4" in dataset:
+	age = '2020q4'
 	delimiter = ','
 	remove_gene_id = True
 elif "gene_effect" not in dataset:
